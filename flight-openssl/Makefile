@@ -13,16 +13,15 @@ LIBS= -lssl -lcrypto -I/usr/include/openssl/
 
 # path to all includes
 INCLUDES= -I$(PROG_DIR)/inc/
+INCLUDES += -I$(PROG_DIR)/thirdparty/json/
 
 # find all sources
-C_SRC_PATH=$(PROG_DIR)/src
-C_SRC_EXTENSION=c
-C_SRC=$(wildcard $(C_SRC_PATH)/*.$(C_SRC_EXTENSION))
+C_SRC=$(wildcard $(PROG_DIR)/src/*.c)
+C_SRC += $(wildcard $(PROG_DIR)/thirdparty/json/*.c)
 
 # do "*.o" files
-OBJ_EXTENSION=o
 OBJECTS=$(patsubst %.c, %.o, $(C_SRC))
-OBJ_PATH=$(OBJ_DIR)/*.$(OBJ_EXTENSION)
+OBJ_PATH=$(OBJ_DIR)/*.o
 
 # targets
 .PHONY: all
@@ -35,9 +34,9 @@ $(EXE_FILE): $(OBJECTS)
 	$(CC) $(LDFLAG) $(OBJ_PATH) $(LIBS) -o $(EXE_FILE)
 
 $(OBJECTS): $(C_SRC)
-	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
-	@mv -f -t $(OBJ_DIR)/ $(OBJECTS)
+	@mkdir -p $(OBJ_DIR)
+	@mv $(OBJECTS) $(OBJ_DIR)/
 
 .PHONY: clean
 clean:

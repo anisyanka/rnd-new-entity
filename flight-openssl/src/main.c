@@ -1,9 +1,13 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <openssl/conf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include "main.h"
+#include "args_checker.h"
+//#include "cJSON.h"
 
 // -----------------------------------------------------------------------------
 static int LibcryptoInit(void) {
@@ -41,6 +45,13 @@ static void LibcryptoCleanupAll(void) {
 
 // -----------------------------------------------------------------------------
 int main (int argc, char * argv[]) {
+  ArgsSummary_t summary_args;
+
+  memset(&summary_args, 0, sizeof(summary_args));
+  if (ArgsCheckInput(argc, argv, &summary_args) == ARGS_WRONG) {
+    return EXIT_FAILURE;
+  }
+
   if (LibcryptoInit()) {
     printf("Hello, OpenSSL!\n");
   } else {
