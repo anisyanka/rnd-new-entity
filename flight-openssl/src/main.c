@@ -7,8 +7,8 @@
 #include <openssl/crypto.h>
 
 #include "main.h"
-#include "args_checker.h"
-#include "cJSON.h"
+#include "args_input.h"
+#include "set1_challenge1.h"
 
 // -----------------------------------------------------------------------------
 static int LibcryptoInit(void) {
@@ -50,15 +50,21 @@ int main (int argc, char * argv[]) {
 
   memset(&summary_args, 0, sizeof(summary_args));
   if (ArgsCheckInput(argc, argv, &summary_args) == ARGS_WRONG) {
-    return EXIT_FAILURE;
+    exit(EXIT_FAILURE);
   }
 
   if (LibcryptoInit()) {
     printf("Hello, OpenSSL!\n");
   } else {
     printf("Init OpenSSL error!\n");
+    LibcryptoCleanupAll();
+    exit(EXIT_FAILURE);
   }
+  
+  /* Start do challenges here */
+  BaseChallenge1DoWork(NULL);
 
+  /* free allocaed memory by OpenSSL */
   LibcryptoCleanupAll();
   return 0;
 }

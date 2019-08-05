@@ -5,7 +5,7 @@ EXE_FILE        = crypto-flight
 
 # compiler and flags
 CC              = gcc
-CFLAGS          = -Wall
+CFLAGS          = -Wall -g
 LDFLAG          = 
 
 # linked libraries
@@ -15,9 +15,11 @@ LIBS            = -lssl -lcrypto
 INCLUDES        = -I./inc/
 INCLUDES        += -I./thirdparty/json/
 INCLUDES        += -I/usr/include/openssl/
+INCLUDES        += -I./lib/base64/
 
 C_SRC           = $(wildcard ./src/*.c)
 C_SRC           += $(wildcard ./thirdparty/json/*.c)
+C_SRC           += $(wildcard ./lib/base64/*.c)
 
 OBJ_DIR         = obj
 OBJ_PATH        = $(OBJ_DIR)/*.o

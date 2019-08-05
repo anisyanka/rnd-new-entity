@@ -1,5 +1,5 @@
-#ifndef _INC_ARGS_CHECKER_H
-#define _INC_ARGS_CHECKER_H
+#ifndef _INC_ARGS_INPUT_H
+#define _INC_ARGS_INPUT_H
 
 typedef enum {
   ARGS_TRUE,
@@ -12,4 +12,4 @@ typedef struct {
 
 ArgsCheckerState_t ArgsCheckInput(int argc, char ** argv, ArgsSummary_t * summary_arg);
 
-#endif  // _INC_ARGS_CHECKER_H
+#endif  // _INC_ARGS_INPUT_H
