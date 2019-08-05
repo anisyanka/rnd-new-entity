@@ -21,6 +21,7 @@ In progress.
  - [Libcrypto-WIKI](https://wiki.openssl.org/index.php/Libcrypto_API)
  - [Libcrypto-API](https://www.openssl.org/docs/man1.1.0/man3/) 
  - [Openssl-engine-example](https://www.openssl.org/blog/blog/2015/10/08/engine-building-lesson-1-a-minimum-useless-engine/)
+ - [Autodependencies with GNU make](http://scottmcpeak.com/autodepend/autodepend.html)
 
 
 ## ToDo:

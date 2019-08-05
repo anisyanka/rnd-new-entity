@@ -13,4 +13,8 @@ crypto-flight
 # build temp files
 build/
 obj/
+dep/
+
+# depencies
+*.d
 
