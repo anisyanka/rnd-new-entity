@@ -1,3 +1,5 @@
+.PHONY: all clean default install uninstall copy_obj
+
 # common variables
 PROG_DIR=.
 OBJ_DIR=obj
@@ -5,7 +7,7 @@ EXE_FILE=crypto-flight
 
 # compiler and its flags
 CC=gcc
-CFLAGS= -Wall -c -static
+CFLAGS= -Wall
 LDFLAG=
 
 # linked libraries
@@ -23,28 +25,26 @@ C_SRC += $(wildcard $(PROG_DIR)/thirdparty/json/*.c)
 OBJECTS=$(patsubst %.c, %.o, $(C_SRC))
 OBJ_PATH=$(OBJ_DIR)/*.o
 
+# --------
 # targets
-.PHONY: all
+# --------
 all: $(EXE_FILE)
-
-.PHONY: default
 default: $(EXE_FILE)
 
-$(EXE_FILE): $(OBJECTS)
+# link
+$(EXE_FILE): $(OBJECTS) copy_obj
 	$(CC) $(LDFLAG) $(OBJ_PATH) $(LIBS) -o $(EXE_FILE)
 
-$(OBJECTS): $(C_SRC)
-	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
+# compile
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+# mv objects to obj/ directory
+copy_obj:
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJECTS) $(OBJ_DIR)/
 
-.PHONY: clean
+# remove compilation products
 clean:
 	rm -rf $(OBJ_DIR)/
 	rm -f $(EXE_FILE)
-
-.PHONY: install
-install:
-
-.PHONY: uninstall
-uninstall:

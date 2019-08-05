@@ -5,9 +5,10 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include <openssl/crypto.h>
+
 #include "main.h"
 #include "args_checker.h"
-//#include "cJSON.h"
+#include "cJSON.h"
 
 // -----------------------------------------------------------------------------
 static int LibcryptoInit(void) {
