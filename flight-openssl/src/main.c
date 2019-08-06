@@ -15,20 +15,17 @@ static int LibcryptoInit(void) {
   int res = 0;
 
   /* Load the human readable error strings for libcrypto */
-  if (ERR_load_crypto_strings()) {
-    res += 1;
+  if (ERR_load_crypto_strings() == 0) {
+    ERR_print_errors_fp(stderr);
+    ++res;
   }
 
   /* Load all digest and cipher algorithms */
-  if (OpenSSL_add_all_algorithms()) {
-    res += 1;
+  if (OpenSSL_add_all_algorithms() == 0) {
+    ERR_print_errors_fp(stderr);
+    ++res;
   }
-  
-  if (res < 2) {
-    return 0;
-  } else {
-    return res;
-  }
+  return res;
 }
 
 // -----------------------------------------------------------------------------
@@ -53,8 +50,8 @@ int main (int argc, char * argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  if (LibcryptoInit()) {
-    printf("Hello, OpenSSL!\n");
+  if (!LibcryptoInit()) {
+    printf("Hello, from OpenSSL flight!\n");
   } else {
     printf("Init OpenSSL error!\n");
     LibcryptoCleanupAll();

@@ -8,7 +8,6 @@
 # binary files
 *.bin
 *.hex
-crypto-flight
 
 # build temp files
 build/
@@ -17,4 +16,10 @@ dep/
 
 # depencies
 *.d
+
+# binary names
+crypto-flight
+
+# program output files
+out/
 
