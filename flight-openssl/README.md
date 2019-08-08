@@ -22,7 +22,9 @@ In progress.
  - [Libcrypto-API](https://www.openssl.org/docs/man1.1.0/man3/) 
  - [Openssl-engine-example](https://www.openssl.org/blog/blog/2015/10/08/engine-building-lesson-1-a-minimum-useless-engine/)
  - [Autodependencies with GNU make](http://scottmcpeak.com/autodepend/autodepend.html)
-
+ - [Coding-style](https://www.kernel.org/doc/html/latest/process/coding-style.html)
+ 
 
 ## ToDo:
  - Add open source license and delete this string.
+ - Add [checkpatch.pl-script](https://stackoverflow.com/questions/45186966/how-to-use-checkpatch-pl-script-for-our-own-c-files-to-validate-coding-style) (from Linux kernel) for checking code style to according the Linux kernel coding style
