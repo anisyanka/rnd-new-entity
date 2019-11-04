@@ -1,7 +1,7 @@
 .PHONY: all clean
 
-INC= xor.h simple_xor_test.h main.h
-SRC= xor.c main.c simple_xor_test.c
+INC=$(shell find . -name '*.h')
+SRC=$(shell find . -name '*.c')
 CCFLAGS= -O0 -g -DDBG_LOG_EN -DERR_LOG_EN
 
 TARGET=xor_enc.a
